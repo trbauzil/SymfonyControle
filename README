@@ -1,0 +1,5 @@
+1 - Les questions 7 et 8 sont dans un autre controller : ApiController
+
+2 - Toutes les fonctionnalités demandées durant le controle ont été réalisé et fonctionne
+
+3 - Seul fonctionnalité qui ne marche pas : {{ project.started_at|date("d/m/Y") }} afficher la date avec twig 

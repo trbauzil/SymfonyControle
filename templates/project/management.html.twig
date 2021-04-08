@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <h2><a href={{ path("man_liste") }}>Liste des projets</a></h2>
+
+    <h4> Projet: {{ project.name }} </h4>
+    <p> Crée le : {#{{ project.started_at|date("${m/d/Y}") }}#} </p>
+    <p> Nombre de taches : {{ project.tasks|length }}</p>
+
+    <label for="status-select">Statut du projet:</label>
+
+    <form action={{ path("man_management", {id: project.id}) }} method="post">
+        <select name="status" id="status-select" {% if project.status == "Termine" %} disabled {% endif %}>
+
+            <option value="Nouveau" {% if project.status == "Nouveau" %} selected {% endif %}> Nouveau </option>
+
+            <option value="En cours" {% if project.status == "En cours" %} selected {% endif %}> En cours </option>
+            
+            <option value="Termine" {% if project.status == "Termine" %} selected {% endif %}> Termine </option>
+                        
+        </select>
+
+        <input type="submit" value="OK">
+
+    </form>
+
+    {% if project.status != "Termine" %}
+        <h2><a href={{ path("man_add_task", {id: project.id}) }}>Ajouter une tache</a></h2>
+    {% endif %}
+    
+
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Nom de la tache</th>
+                <th scope="col">Description</th>
+                <th scope="col">Ajoutee le</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for task in project.tasks %}
+                <tr>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.description }}</td>
+                    <td>{# {{ task.created_at|date("d/m/Y") }} #}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

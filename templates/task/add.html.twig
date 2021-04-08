@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <h2><a href={{ path("man_liste") }}>Retourner à la liste</a></h2>
+
+    <form action={{ path("man_add_task", {id: project.id}) }} method="post">
+        <p>Titre de la tache : <input type="text" name="title" /></p>
+        <p>Description de la tache : <textarea type="text" name="description"/></textarea></p>
+        <p><input type="submit" value="Créer la tache"></p>
+    </form>
+
+{% endblock %}

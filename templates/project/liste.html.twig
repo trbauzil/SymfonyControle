@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <h2><a href={{ path("man_add") }}>Ajouter un projet</a></h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Nom du projet</th>
+                <th scope="col">Statut</th>
+                <th scope="col">Taches</th>
+                <th scope="col">Ajouté le</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for project in projects %}
+                <tr>
+                    <td>{{ project.name }}</td>
+                    <td>{{ project.status }}</td>
+                    <td>{{ project.tasks|length }}</td>
+                    <td>{# {{ project.started_at|date("d/m/Y") }} #}</td>
+                    <td><a href={{ path("man_management", {id: project.id}) }}>Gérer</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

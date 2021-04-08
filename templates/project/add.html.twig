@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <h2><a href={{ path("man_liste") }}>Retourner à la liste</a></h2>
+
+    <form action={{ path("man_add") }} method="post">
+        <p>Nom du projet : <input type="text" name="name" /></p>
+        <p><input type="submit" value="Ajouter"></p>
+    </form>
+
+{% endblock %}
